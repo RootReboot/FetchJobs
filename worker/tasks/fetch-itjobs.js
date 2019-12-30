@@ -1,4 +1,10 @@
 var fetch = require("node-fetch");
+var redis = require("redis"),
+  client = redis.createClient();
+
+const { promisify } = require("util");
+//const getAsync = promisify(client.get).bind(client);
+const setAsync = promisify(client.set).bind(client);
 
 const api_key = "474e7116289ae988d0ee0a3755361c93";
 
@@ -12,16 +18,16 @@ async function fetchItJobs() {
     const res = await fetch(`${baseURL}&page=${onPage}`);
     const jsonRes = await res.json();
     const jobs = await jsonRes.results;
-    console.log(jobs);
     if (jobs == undefined) {
       break;
     }
     allJobs = allJobs.concat(jobs);
     onPage++;
   }
-  console.log("got jobs", allJobs.length);
-}
+  console.log("got", allJobs.length, "jobs");
+  const success = await setAsync("itjobs", JSON.stringify(allJobs));
 
-fetchItJobs();
+  console.log({ success });
+}
 
 module.exports = fetchItJobs;
