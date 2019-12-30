@@ -1,11 +1,13 @@
 import React from "react";
-import './App.css';
+import "./App.css";
 
 function Job({ job }) {
-  return <div className="Job">
+  return (
+    <div className="Job">
       {job.title}
-      {job.company}
-  </div>;
+      {job.company.name}
+    </div>
+  );
 }
 
 export default Job;
