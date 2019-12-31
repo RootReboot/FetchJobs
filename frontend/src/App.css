@@ -17,13 +17,29 @@
   color: #61dafb;
 }
 
-.Job {
+body {
+  margin: 20px 40px;
+}
+
+.job {
   width: 80%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
-  margin: 10 px 0;
-  padding: 10px 0;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 20px 0;
+}
+
+.job:hover {
+  cursor: pointer;
+}
+
+.job-company {
+  padding: 0 30px;
+}
+
+.job-dialog {
+  padding: 30px 50px;
 }
 
 @keyframes App-logo-spin {
