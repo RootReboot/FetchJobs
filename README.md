@@ -12,6 +12,16 @@ Using react hooks.
 
 The basics of the basics and the advantages of an in memory database (cache).
 
+To use Redis in windows I installed a linux subsystem. I went with ubuntu.
+To start:
+
+- service redis-server start
+
+To see data:
+
+1. react-cli
+2. get itjobs
+
 ## React:
 
 Learned the basics of using react without class components. Using functions components with react hooks.
