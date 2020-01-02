@@ -19,7 +19,7 @@ To start:
 
 To see data:
 
-1. react-cli
+1. redis-cli
 2. get itjobs
 
 To insert data:
