@@ -12,6 +12,8 @@ Using react hooks.
 
 The basics of the basics and the advantages of an in memory database (cache).
 
+## To Run:
+
 To use Redis in windows I installed a linux subsystem. I went with ubuntu.
 To start:
 
@@ -22,10 +24,17 @@ To see data:
 1. redis-cli
 2. get itjobs
 
-To insert data:
-Run the cron worker
+Run the cron worker:
 
 1. node worker/index
+
+Run the client:
+
+1. yarn start
+
+Run the api:
+
+1. node api/index
 
 ## React:
 
