@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 
 import Job from "./Job";
+import JobModal from "./JobModal";
 
 const useStyles = makeStyles({
   root: {
@@ -21,16 +22,31 @@ function Header({ numberJobs }) {
   );
 }
 
-function JobsInEachPage({ jobs }, { activeStep }) {
+function JobsInEachPage({ jobs, activeStep }) {
   const jobsOnPage = jobs.slice(activeStep * 10, activeStep * 10 + 10);
+
+  // modal
+  const [open, setOpen] = React.useState(false);
+  const [selectedJob, selectJob] = React.useState({});
+
+  function handleClickOpen() {
+    setOpen(true);
+  }
+  function handleClose() {
+    setOpen(false);
+  }
+
   return (
     <Fragment>
+      <JobModal open={open} job={selectedJob} handleClose={handleClose} />
       {jobsOnPage.map((job, i) => (
         <Job
           key={i}
           job={job}
           onClick={() => {
-            console.log("clicked");
+            selectJob(job);
+            handleClickOpen();
+            console.log("hey"); // modal
           }}
         />
       ))}
@@ -38,9 +54,7 @@ function JobsInEachPage({ jobs }, { activeStep }) {
   );
 }
 
-function ProgressMobileStepper({ numberJobs }, { activeStep }, setActiveStep) {
-  console.log(numberJobs);
-  console.log(activeStep);
+function ProgressMobileStepper({ numberJobs, activeStep, setActiveStep }) {
   const classes = useStyles();
   const theme = useTheme();
   const numberOfSteps = Math.ceil(numberJobs / 10);
@@ -48,12 +62,22 @@ function ProgressMobileStepper({ numberJobs }, { activeStep }, setActiveStep) {
   //step == 1 10,20
   //step == 20,30
 
+  function scrollToTop() {
+    const c = document.documentElement.scrollTop || document.body.scrollTop;
+    if (c > 0) {
+      window.requestAnimationFrame(scrollToTop);
+      window.scrollTo(0, c - c / 8);
+    }
+  }
+
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
+    scrollToTop();
   };
 
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
+    scrollToTop();
   };
 
   return (
@@ -99,13 +123,16 @@ function ProgressMobileStepper({ numberJobs }, { activeStep }, setActiveStep) {
 function Jobs({ jobs }) {
   const numberJobs = jobs.length;
   const [activeStep, setActiveStep] = React.useState(0);
-  //I can't call the functions as components because for some reason
-  //When i pass variables create by React.useState they are undefined
+
   return (
     <div className="Jobs">
       <Header numberJobs={numberJobs} />
-      {JobsInEachPage({ jobs }, { activeStep })}
-      {ProgressMobileStepper({ numberJobs }, { activeStep }, setActiveStep)}
+      <JobsInEachPage jobs={jobs} activeStep={activeStep} />
+      <ProgressMobileStepper
+        numberJobs={numberJobs}
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+      />
     </div>
   );
 }

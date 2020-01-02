@@ -1,22 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 body {
   margin: 20px 40px;
 }
@@ -27,12 +8,18 @@ body {
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
-  padding: 20px 0;
+  padding: 20px 10px;
+  align-items: center;
 }
 
 .job:hover {
   cursor: pointer;
-  color: darkgrey;
+  color: #666666;
+}
+
+.detail-logo {
+  height: 30px;
+  float: right;
 }
 
 .job-company {
@@ -43,11 +30,22 @@ body {
   padding: 30px 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.welcome-description {
+  width: 80%;
+  margin: 20px 0;
+  padding: 20px 10px;
+}
+
+.welcome-item {
+  opacity: 0;
+  transition: 0.5s ease all;
+}
+
+.flex-align-mid {
+  display: flex;
+  align-items: center;
+}
+
+.job-title-location {
+  margin-left: 20px;
 }

@@ -3,9 +3,9 @@ import { Paper, Typography } from "@material-ui/core";
 
 import "./App.css";
 
-function Job({ job }) {
+function Job({ job, onClick }) {
   return (
-    <Paper className="job">
+    <Paper onClick={onClick} className="job">
       <div>
         <Typography variant="h5">{job.title}</Typography>
         <Typography variant="h6">{job.company.name}</Typography>
