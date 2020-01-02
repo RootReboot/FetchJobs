@@ -22,6 +22,11 @@ To see data:
 1. react-cli
 2. get itjobs
 
+To insert data:
+Run the cron worker
+
+1. node worker/index
+
 ## React:
 
 Learned the basics of using react without class components. Using functions components with react hooks.
