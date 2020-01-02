@@ -8,7 +8,7 @@ const setAsync = promisify(client.set).bind(client);
 
 const api_key = "474e7116289ae988d0ee0a3755361c93";
 
-const baseURL = `https://api.itjobs.pt/job/search.json?api_key=${api_key}&q=fullstacktype=1&location=18`;
+const baseURL = `https://api.itjobs.pt/job/search.json?api_key=${api_key}&q=fullstack&type=1&location=18`;
 
 async function fetchItJobs() {
   onPage = 1;
